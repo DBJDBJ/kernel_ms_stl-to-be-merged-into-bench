@@ -27,9 +27,7 @@ Since C++98 one can use standard C++ feature macros:
 | Run-time type identification (dynamic_cast, typeid)|	__cpp_rtti	| 199711 |	predefined
 | Exception handling |	__cpp_exceptions | 199711 | predefined
 
-<h3>&nbsp;</h3>
-
-Windows OS is written in C. WIN32 is C API. On Windows builds we use CL predefined macros:
+On Windows builds we use CL predefined macros:
 
 ```cpp
 // defined if /kernel switch is used
@@ -62,16 +60,16 @@ printf(  ": _CPPUNWIND == 0");
 </span>
 
 ```cpp
-#define SEH_BUILD \
-(_HAS_EXCEPTIONS == 0) && (_CPPRTTI == 0)
- && (  _CPPUNWIND == 0 )
+#define SEH_BUILD (_HAS_EXCEPTIONS == 0) 
 ```
 
-Please do remember `SEH_BUILD` is invented in here to simplify what we mean. 
+Please do remember `SEH_BUILD` is invented in here by me, to simplify my mesage; what I mean. 
+
+Windows OS is written in C. WIN32 is C API. 
 
 > SEH is always available to any Windows based code.
 
-**Windows no C++ exceptions build** -- is cl.exe C/C++ build without any `/EH` switch or with a famous `/kernel` switch. [SEH](https://docs.microsoft.com/en-us/cpp/cpp/structured-exception-handling-c-cpp?view=vs-2019) is intrinsic to Windows. SEH is in the foundations of Windows programming. RTTI can exist in that situation. 
+What is **Windows no C++ exceptions build** ? That is cl.exe C/C++ build without any `/EH` switch or with a famous `/kernel` switch added. [SEH](https://docs.microsoft.com/en-us/cpp/cpp/structured-exception-handling-c-cpp?view=vs-2019) is intrinsic to Windows. SEH is in the foundations of Windows programming. RTTI can exist in the SEH situation. 
 
 ### 1.0.1. Sampling repo and the current MS STL status
 
